@@ -39,7 +39,7 @@ const AccountForm = () => {
                                 <div className="form_head">
                                     <h2>{isSignupVisible ? 'Signup' : 'Login'}</h2>
                                     <p>
-                                        {isSignupVisible ? 'Already have an account ?' : 'New to X-Beat ?'}
+                                        {isSignupVisible ? 'Already have an account ?' : 'New in FadeAway ?'}
                                         &nbsp;&nbsp;
                                         <button type="button" onClick={handleIsSignupVisible}>
                                             {isSignupVisible ? 'Login' : 'Create an account'}

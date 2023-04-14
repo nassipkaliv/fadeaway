@@ -63,13 +63,13 @@ const ProductSummary = (props) => {
                                 </div>
                             ) : active === 'overview' ? (
                                 <div className="prod_overview">
-                                    <h3>The <span>{title}</span> {info} provides with fabulous sound quality</h3>
+                                    <h3>The <span>{title}</span> {info} provides with great quality</h3>
                                     <ul>
-                                        <li>Sound Tuned to Perfection</li>
+                                        <li>Fast and High</li>
                                         <li>Comfortable to Wear</li>
-                                        <li>Long Hours Playback Time</li>
+                                        <li>Long Hour</li>
                                     </ul>
-                                    <p>Buy the <b>{title} {info}</b> which offers you with fabulous music experience by providing you with awesome sound quality that you can never move on from. Enjoy perfect flexibility and mobility with amazing musical quality with these {category} giving you a truly awesome audio experience. It blends with exceptional sound quality and a range of smart features for an unrivalled listening experience.</p>
+                                    <p>Nodding to the Air Jordan 1 High Travis Scott Mocha, the Air Jordan 1 Low Travis Scott Reverse Mocha offers a similar Mocha and off-white palette but in a reverse-style color blocking. Its upper is constructed with a Mocha Durabuck base, white leather overlays, and signature reverse Swooshes. Hits of red on the Wings logo heel embroidery and woven tongue label gives a sharp contrast to the design's neutral look. From there, a yellowed Air sole adds a vintage feel.</p>
                                 </div>
                             ) : (
                                 <div className="prod_reviews">
