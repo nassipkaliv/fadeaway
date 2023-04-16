@@ -34,7 +34,7 @@ export const brandsMenu = [
   },
   {
       id: 3,
-      label: "Yeezy",
+      label: "New Balance",
       checked: false,
   },
 ];

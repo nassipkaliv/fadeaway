@@ -8,7 +8,7 @@ import useActive from '../../hooks/useActive';
 
 const ProductCard = (props) => {
 
-    const { id, images, title, info, finalPrice, originalPrice, rateCount, path } = props;
+    const { id, images, title, info, finalPrice, originalPrice, rateCount, path, description } = props;
 
     const { addItem } = useContext(cartContext);
     const { active, handleActive, activeClass } = useActive(false);

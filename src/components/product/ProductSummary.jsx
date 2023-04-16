@@ -5,7 +5,7 @@ import ProductReviews from './ProductReview';
 
 const ProductSummary = (props) => {
 
-    const { brand, title, info, category } = props;
+    const { brand, title, info, category, description } = props;
 
     const { active, handleActive, activeClass } = useActive('specs');
 
@@ -69,7 +69,7 @@ const ProductSummary = (props) => {
                                         <li>Comfortable to Wear</li>
                                         <li>Long Hour</li>
                                     </ul>
-                                    <p>Nodding to the Air Jordan 1 High Travis Scott Mocha, the Air Jordan 1 Low Travis Scott Reverse Mocha offers a similar Mocha and off-white palette but in a reverse-style color blocking. Its upper is constructed with a Mocha Durabuck base, white leather overlays, and signature reverse Swooshes. Hits of red on the Wings logo heel embroidery and woven tongue label gives a sharp contrast to the design's neutral look. From there, a yellowed Air sole adds a vintage feel.</p>
+                                    <p>{description}</p>
                                 </div>
                             ) : (
                                 <div className="prod_reviews">
