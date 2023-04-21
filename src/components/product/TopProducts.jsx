@@ -33,7 +33,7 @@ const TopProducts = () => {
 
     return (
         <>
-            <div className="products_filter_tabs">
+            {/* <div className="products_filter_tabs">
                 <ul className="tabs">
                     {
                         productsCategory.map((item, i) => (
@@ -47,7 +47,7 @@ const TopProducts = () => {
                         ))
                     }
                 </ul>
-            </div>
+            </div> */}
             <div className="wrapper products_wrapper">
                 {
                     products.slice(0, 11).map(item => (

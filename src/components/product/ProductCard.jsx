@@ -48,18 +48,16 @@ const ProductCard = (props) => {
                         <Link to={`${path}${id}`}>{title}</Link>
                     </h3>
                     <h5 className="products_info">{info}</h5>
-                    <div className="separator"></div>
                     <h2 className="products_price">
                         {newPrice} &nbsp;
-                        <small><del>{oldPrice}</del></small>
                     </h2>
-                    <button
+                    {/* <button
                         type="button"
                         className={`btn products_btn ${activeClass(id)}`}
                         onClick={handleAddItem}
                     >
                         {active ? 'Added' : 'Add to cart'}
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </>

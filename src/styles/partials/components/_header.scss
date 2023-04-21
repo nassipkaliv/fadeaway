@@ -8,19 +8,18 @@
   @include transition(background-color, 0.2s, linear);
 
   &.sticky {
-      background-color: var(--bg-color);
+      background-color: var(--bg-color);  
   }
 }
 
 .navbar {
-  @include flexbox(space-between, center);
+  @include flexbox(space-between);
 }
 
 .nav_logo {
   @include devices(xs) {
       font-size: 1.2rem;
   }
-  
 }
 
 .nav_actions {

@@ -83,6 +83,11 @@
       }
   }
 
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #717486;
+  }
   .hero_price {
       @include margin-y(2rem, 3rem);
 
@@ -98,7 +103,8 @@
 
   img {
       @include img-fit;
-  }
+      
+    }
 
   @include devices(lg) {
       grid-row: 1;

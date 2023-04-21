@@ -19,9 +19,8 @@
 }
 
 .products_card {
-  @include bordered(1px, rgba($color: #ffffff, $alpha: 0.4));
-  border-radius: 3px;
-  box-shadow: 0px 5px 10px rgba($color: #000000, $alpha: 0.5);
+  
+
   overflow: hidden;
 
   &.browse_card {
@@ -40,13 +39,13 @@
 }
 
 .products_img {
-  background: var(--bg-color-2);
+  background: var(--bg-product);
   text-align: center;
   padding: 1rem;
   overflow: hidden;
 
   img {
-      width: 70%;
+      width: 100%;
       @include transition(transform, 0.25s, ease);
 
       &:hover {
@@ -65,7 +64,9 @@
 
 .products_info {
   opacity: 0.8;
-  font-weight: 500;
+  font-size: 0.9rem;
+  color: #adadad;
+  font-weight: 300;
 }
 
 .products_btn {
@@ -92,8 +93,8 @@
       grid-template-columns: 1fr;
   }
 
-  .products_wrapper {
-      @include devices(xl) {
+  .products_wrapper { 
+    @include devices(xl) {
           @include grid-cols(3, 1fr, 0.7rem);
       }
 

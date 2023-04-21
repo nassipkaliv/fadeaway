@@ -29,13 +29,15 @@
 }
 
 .section {
-  @include padding-y(5rem, 5rem);
+  @include padding-y(80px, 0px);
+  margin: auto;
 }
 
 .section_head {
-  margin-bottom: 4rem;
-  text-align: center;
-
+  margin-bottom: 3rem;
+  margin: 0 0 40px;
+  text-transform: uppercase;
+  font-weight: bold;
   @include devices(xs) {
       margin-bottom: 2rem;
   }
@@ -195,3 +197,5 @@
 .swiper-pagination-bullet-active {
   background: var(--main-color) !important;
 }
+
+
