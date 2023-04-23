@@ -22,7 +22,7 @@ const Footer = () => {
                 <div className="wrapper footer_wrapper">
                     <div className="foot_about">
                         <h2>
-                            <Link to="/">FadeAway</Link>
+                            <Link to="/">FADEAWAY</Link>
                         </h2>
                         <div className="foot_subs">
                             <p>Subscribe to our Email alerts to receive early discount offers, and new products info.</p>
@@ -72,7 +72,7 @@ const Footer = () => {
                     <div className="sub_footer_wrapper">
                         <div className="foot_copyright">
                             <p>
-                                {currYear} | FadeAway. All Rights Reserved.
+                                {currYear} | FADEAWAY. All Rights Reserved.
                                 Built by | <a href="https://gulshansongara.netlify.app/">Nassipkali Yernur</a>
                             </p>
                         </div>

@@ -1,7 +1,7 @@
 .services_wrapper {
   @include grid-cols(4, 1fr, 2rem);
   place-items: center;
-  @include padding-y(3rem, 1rem);
+  @include padding-y(5rem, 5rem);
 
 
   @include devices(lg) {
@@ -15,13 +15,13 @@
 
 .services_card {
   @include flexbox(flex-start, center);
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .services_icon {
   color: var(--main-color);
   opacity: 0.9;
-  font-size: 2.2rem;
+  font-size: 4rem;
   line-height: 1;
 }
 
