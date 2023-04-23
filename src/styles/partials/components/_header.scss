@@ -20,7 +20,13 @@
   @include devices(xs) {
       font-size: 1.2rem;
   }
+  
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 }
+
+
+
 
 .nav_actions {
   @include flexbox($alignItems: center);
@@ -33,12 +39,34 @@
   }
 }
 
+.nav_menu {
+  font-size: 1.7rem;
+  display: flex;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  @include devices(xs) {
+    gap: 2rem;
+    font-size: 1rem;
+  }
+}
+
+.nike_action,
+.nb_action,
+.adidas_action,
+.puma_action,
 .search_action,
 .cart_action,
 .user_action {
   position: relative;
+  display: inline-block;
 }
 
+.nike_action,
+.nb_action,
+.adidas_action,
+.puma_action,
 .search_action,
 .cart_action {
   &:hover .tooltip {
@@ -46,6 +74,10 @@
   }
 }
 
+.nike_action,
+.nb_action,
+.adidas_action,
+.puma_action,
 .search_action,
 .user_action {
   span {
@@ -73,7 +105,7 @@
       top: 50px;
       right: 0;
       width: 17.5rem;
-      background-color: var(--bg-color-2);
+      background-color: var(--bg-color);
       padding: 1.4rem;
       font-size: 0.9rem;
       border-radius: 3px;

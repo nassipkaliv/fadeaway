@@ -1,7 +1,7 @@
 #footer {
   background-color: var(--black-color);
   @include padding-y(3rem, 2rem);
-
+  color: var(--text-ft-color);
   .separator {
       @include margin-y(2.5rem, 2rem);
       opacity: 0.7;
@@ -30,6 +30,7 @@
       @include margin-y(1rem, 1rem);
       font-size: 0.875rem;
       opacity: 0.9;
+      
   }
 
   .btn {

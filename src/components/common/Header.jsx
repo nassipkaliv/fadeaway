@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
+import { SiAdidas, SiNike, SiNewbalance, SiPuma } from 'react-icons/si'
 import { dropdownMenu } from '../../data/headerData';
 import commonContext from '../../contexts/common/commonContext';
 import cartContext from '../../contexts/cart/cartContext';
@@ -36,9 +37,38 @@ const Header = () => {
                 <div className="container">
                     <div className="navbar">
                         <h2 className="nav_logo">
-                            <Link to="/">FadeAway</Link>
+                            <Link to="/">FADEAWAY</Link>
                         </h2>
-                        <nav className="nav_actions">
+                       
+                        <nav className="nav_menu">
+                                <div className='nike_action'>
+                                    <span>
+                                        <SiNike />
+                                    </span>
+                                    <div className="tooltip">Nike</div>
+                                </div> 
+                                <div className='adidas_action'>
+                                    <span>
+                                        <SiAdidas />
+                                    </span>
+                                    <div className="tooltip">Adidas</div>
+                                </div>              
+                                <div className='nb_action'>
+                                    <span>
+                                        <SiNewbalance />
+                                    </span>
+                                    <div className="tooltip">New Balance</div>
+                                </div>         
+                                <div className='puma_action'>
+                                    <span>
+                                        <SiPuma />
+                                    </span>
+                                    <div className="tooltip">Puma</div>
+                                </div>
+                        </nav>
+
+
+                        <div className='nav_actions'>
                             <div className="search_action">
                                 <span onClick={() => toggleSearch(true)}>
                                     <AiOutlineSearch />
@@ -90,7 +120,7 @@ const Header = () => {
                                     </ul>
                                 </div>
                             </div>
-                        </nav>
+                        </div>
                     </div>
                 </div>
             </header>

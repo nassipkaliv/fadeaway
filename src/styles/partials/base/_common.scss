@@ -34,6 +34,7 @@
 }
 
 .section_head {
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0,0,0,.004);
   margin-bottom: 3rem;
   margin: 0 0 40px;
   text-transform: uppercase;
@@ -67,7 +68,7 @@
 .input_field {
   display: block;
   background: transparent;
-  color: #fff;
+  color: #000000;
   width: 100%;
   padding: 0.65rem 0.55rem;
   font-size: 1rem;

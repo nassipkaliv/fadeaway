@@ -134,7 +134,7 @@
 
       li {
           @include bordered(1px, var(--text-muted));
-          background-color: var(--bg-color-2);
+          background-color: var(--bg-color);
           border-radius: 3px;
           font-size: 0.9rem;
           padding: 0.6rem;

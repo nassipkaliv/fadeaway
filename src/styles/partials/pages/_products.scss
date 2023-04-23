@@ -20,7 +20,7 @@
 
 .products_card {
   
-
+  background-color: #ededed;
   overflow: hidden;
 
   &.browse_card {
@@ -56,6 +56,7 @@
 
 .products_details {
   padding: 1rem;
+  background-color: #fff;
 }
 
 .products_title {
