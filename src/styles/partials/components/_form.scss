@@ -39,7 +39,7 @@
   }
 
   button {
-      color: #eee;
+      color: rgba(255, 0, 0);
       opacity: 0.8;
 
       &:hover {
@@ -66,7 +66,7 @@
 
   .input_field {
       padding: 0.95rem 0.85rem;
-
+      color: #000000;
       &:focus-within ~ .input_label,
       &:valid ~ .input_label {
           transform: scale(0.85) translateY(-185%);
