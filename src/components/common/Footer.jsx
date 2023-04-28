@@ -73,7 +73,7 @@ const Footer = () => {
                         <div className="foot_copyright">
                             <p>
                                 {currYear} | FADEAWAY. All Rights Reserved.
-                                Built by | <a href="https://gulshansongara.netlify.app/">Nassipkali Yernur</a>
+                                Built by | <a href="https://github.com/nassipkaliv">Nassipkali Yernur</a>
                             </p>
                         </div>
                         <div className="foot_social">
