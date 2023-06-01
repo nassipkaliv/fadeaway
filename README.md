@@ -1,5 +1,3 @@
 FADEAWAY Sneakers Store
 
-to run the project you need:
-1.yarn // download dependencies
-2.yarn dev // run the project
+![image](https://github.com/nassipkaliv/fadeaway/assets/107858992/8f172d32-d243-47ff-abd4-5541c6ef3da3)
