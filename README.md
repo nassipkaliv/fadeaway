@@ -4,3 +4,4 @@
 ![image](https://github.com/nassipkaliv/fadeaway/assets/107858992/8cdbd7e1-8490-4710-b45e-4e23ffeb169c)
 ![image](https://github.com/nassipkaliv/fadeaway/assets/107858992/01cc809a-48ca-473f-8d63-677e423c18f7)
 
+SolD
