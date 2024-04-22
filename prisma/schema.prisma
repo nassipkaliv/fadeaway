@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+}
+
+
+model Sneakers {
+  sneakers_id   Int      @id @default(autoincrement())
+  brand         String
+  model         String
+  color         String
+  size          Float
+  price         Float
+  quantity_available Int
+  image_url     String
+
+  // Define many-to-many relationship with Category
+  categories    Category[] @relation("SneakersInCategory")
+}
+
+// Users table
+model User {
+  user_id       Int      @id @default(autoincrement())
+  username      String
+  email         String   @unique
+  password      String
+  address       String
+  phone_number  String
+
+  // Define one-to-many relationship with Orders
+  orders        Order[]
+}
+
+// Orders table
+model Order {
+  order_id      Int      @id @default(autoincrement())
+  user_id       Int
+  order_date    DateTime @default(now())
+  total_amount  Float
+
+  // Define one-to-many relationship with OrderItems
+  order_items   OrderItem[]
+
+  // Define one-to-many relationship with User
+  user          User     @relation(fields: [user_id], references: [user_id])
+}
+
+// OrderItems table
+model OrderItem {
+  order_item_id Int      @id @default(autoincrement())
+  order_id      Int
+  sneakers_id   Int
+  quantity      Int
+  unit_price    Float
+
+
+  order         Order    @relation(fields: [order_id], references: [order_id])
+
+
+}
+
+// Categories table
+model Category {
+  category_id   Int      @id @default(autoincrement())
+  category_name String
+
+  sneakers      Sneakers[] @relation("SneakersInCategory")
+}
