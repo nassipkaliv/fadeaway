@@ -5,6 +5,7 @@ const useForm = () => {
     const { toggleForm, setFormUserInfo } = useContext(commonContext);
     const [inputValues, setInputValues] = useState({});
 
+    // handling input-values
     const handleInputValues = (e) => {
         const { name, value } = e.target;
 
@@ -16,6 +17,7 @@ const useForm = () => {
         });
     };
 
+    // handling form-submission
     const handleFormSubmit = (e) => {
         const loggedUserInfo = inputValues.mail.split('@')[0].toUpperCase();
 
