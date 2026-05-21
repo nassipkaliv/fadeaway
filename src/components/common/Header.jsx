@@ -5,14 +5,15 @@ import { SiAdidas, SiNike, SiNewbalance, SiPuma } from 'react-icons/si'
 import { dropdownMenu } from '../../data/headerData';
 import commonContext from '../../contexts/common/commonContext';
 import cartContext from '../../contexts/cart/cartContext';
-import AccountForm from '../form/AccountForm';
+import { useAuth } from '../../contexts/auth/authContext';
 import SearchBar from './SearchBar';
 
 
 const Header = () => {
 
-    const { formUserInfo, toggleForm, toggleSearch } = useContext(commonContext);
+    const { toggleSearch } = useContext(commonContext);
     const { cartItems } = useContext(cartContext);
+    const { user, logout } = useAuth();
     const [isSticky, setIsSticky] = useState(false);
 
 
@@ -93,30 +94,28 @@ const Header = () => {
                                     <AiOutlineUser />
                                 </span>
                                 <div className="dropdown_menu">
-                                    <h4>Hello! {formUserInfo && <Link to="*">&nbsp;{formUserInfo}</Link>}</h4>
+                                    <h4>Hello{user ? `, ${user.username}` : '!'}</h4>
                                     <p>Access account and manage orders</p>
-                                    {
-                                        !formUserInfo && (
-                                            <button
-                                                type="button"
-                                                onClick={() => toggleForm(true)}
-                                            >
-                                                Login / Signup
-                                            </button>
-                                        )
-                                    }
+                                    {!user ? (
+                                        <Link to="/login">
+                                            <button type="button">Login / Signup</button>
+                                        </Link>
+                                    ) : (
+                                        <button type="button" onClick={logout}>Logout</button>
+                                    )}
                                     <div className="separator"></div>
                                     <ul>
-                                        {
-                                            dropdownMenu.map(item => {
-                                                const { id, link, path } = item;
-                                                return (
-                                                    <li key={id}>
-                                                        <Link to={path}>{link}</Link>
-                                                    </li>
-                                                );
-                                            })
-                                        }
+                                        {dropdownMenu.map(item => {
+                                            const { id, link, path } = item;
+                                            return (
+                                                <li key={id}>
+                                                    <Link to={path}>{link}</Link>
+                                                </li>
+                                            );
+                                        })}
+                                        {user && (
+                                            <li><Link to="/orders">My Orders</Link></li>
+                                        )}
                                     </ul>
                                 </div>
                             </div>
@@ -126,7 +125,6 @@ const Header = () => {
             </header>
 
             <SearchBar />
-            <AccountForm />
         </>
     );
 };

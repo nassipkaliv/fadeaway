@@ -1,0 +1,307 @@
+.auth_page {
+    min-height: calc(100vh - 80px);
+    @include flexbox(center, center);
+    padding: 4rem 1rem;
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(250, 41, 42, 0.18), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(237, 29, 36, 0.15), transparent 60%),
+        var(--bg-color-2);
+
+    @include devices(sm) {
+        padding: 2rem 1rem;
+    }
+}
+
+.auth_card {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(20, 22, 25, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    animation: auth_fade_in 0.45s ease-out;
+
+    @include devices(sm) {
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    .auth_brand {
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        letter-spacing: 0.18rem;
+        color: var(--main-color);
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+    }
+
+    .auth_title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.85rem;
+        font-weight: 800;
+        margin-bottom: 0.4rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.04rem;
+    }
+
+    .auth_subtitle {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 2rem;
+        font-size: 0.92rem;
+    }
+
+    .auth_form {
+        display: grid;
+        gap: 1.1rem;
+    }
+
+    .auth_input {
+        position: relative;
+
+        input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 1rem 1rem 1rem 2.8rem;
+            font-size: 0.95rem;
+            outline: none;
+            @include transition(all, 0.2s, ease);
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.35);
+            }
+
+            &:focus {
+                border-color: var(--main-color);
+                background: rgba(255, 255, 255, 0.06);
+                box-shadow: 0 0 0 4px rgba(250, 41, 42, 0.12);
+            }
+        }
+
+        .auth_icon {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+    }
+
+    .auth_error {
+        background: rgba(250, 41, 42, 0.12);
+        border: 1px solid rgba(250, 41, 42, 0.3);
+        color: #ffb3b5;
+        padding: 0.7rem 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .auth_submit {
+        margin-top: 0.4rem;
+        background: linear-gradient(135deg, var(--main-color), var(--main-color-2));
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.05rem;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 10px;
+        padding: 1rem;
+        cursor: pointer;
+        @include transition(all, 0.2s, ease);
+
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px -8px rgba(250, 41, 42, 0.5);
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
+    .auth_divider {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.85rem;
+        margin: 1.5rem 0 1rem;
+        position: relative;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        &::before { left: 0; }
+        &::after { right: 0; }
+    }
+
+    .auth_footer {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.9rem;
+
+        a {
+            color: var(--main-color);
+            font-weight: 600;
+            margin-left: 0.4rem;
+            @include transition(color, 0.15s, ease);
+
+            &:hover {
+                color: #ff7677;
+            }
+        }
+    }
+}
+
+@keyframes auth_fade_in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+// === Orders page ===
+.orders_page {
+    padding-top: 140px !important;
+    padding-bottom: 60px !important;
+
+    @include devices(sm) {
+        padding-top: 110px !important;
+    }
+
+    .orders_header {
+        @include flexbox(space-between, center);
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+
+        h2 {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+        }
+
+        .orders_count {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 0, 0, 0.04);
+            border-radius: 999px;
+        }
+    }
+
+    .order_card {
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 14px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.15);
+        @include transition(transform, 0.2s, ease);
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+
+        .order_top {
+            @include flexbox(space-between, center);
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            margin-bottom: 1rem;
+
+            .order_id {
+                font-weight: 700;
+                font-size: 1.05rem;
+            }
+
+            .order_date {
+                color: var(--text-muted);
+                font-size: 0.85rem;
+            }
+        }
+
+        .order_items {
+            display: grid;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+
+            .order_item_row {
+                @include flexbox(space-between, center);
+                gap: 1rem;
+                font-size: 0.92rem;
+
+                .order_item_name {
+                    color: var(--text-color);
+                }
+
+                .order_item_qty {
+                    color: var(--text-muted);
+                }
+
+                .order_item_price {
+                    font-weight: 600;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .order_bottom {
+            @include flexbox(space-between, center);
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            font-weight: 700;
+
+            .order_total {
+                font-size: 1.1rem;
+                color: var(--main-color);
+            }
+        }
+    }
+}
+
+.status_badge {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+
+    &.status_pending  { background: #fff4d3; color: #946a00; }
+    &.status_paid     { background: #d4f4d8; color: #1c7a2e; }
+    &.status_shipped  { background: #d6e8ff; color: #0a4d99; }
+    &.status_cancelled{ background: #ffd7d7; color: #a01313; }
+}
+
+// === Auth-aware loading state ===
+.center_loader {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}

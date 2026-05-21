@@ -5,7 +5,8 @@ import { calculateDiscount, displayMoney } from '../helpers/utils';
 import useDocTitle from '../hooks/useDocTitle';
 import useActive from '../hooks/useActive';
 import cartContext from '../contexts/cart/cartContext';
-import productsData from '../data/productsData';
+import { useToast } from '../contexts/toast/toastContext';
+import { api } from '../api/client';
 import SectionsHead from '../components/common/SectionsHead';
 import RelatedSlider from '../components/sliders/RelatedSlider';
 import ProductSummary from '../components/product/ProductSummary';
@@ -17,44 +18,62 @@ const ProductDetails = () => {
     useDocTitle('Product Details');
 
     const { handleActive, activeClass } = useActive(0);
-
     const { addItem } = useContext(cartContext);
-
+    const toast = useToast();
     const { productId } = useParams();
 
-    // here the 'id' received has 'string-type', so converting it to a 'Number'
-    const prodId = parseInt(productId);
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [previewImg, setPreviewImg] = useState(null);
 
-    // showing the Product based on the received 'id'
-    const product = productsData.find(item => item.id === prodId);
+    useEffect(() => {
+        let active = true;
+        setLoading(true);
+        api.getSneaker(productId)
+            .then((p) => {
+                if (!active) return;
+                setProduct(p);
+                setPreviewImg(p.images[0]);
+                handleActive(0);
+            })
+            .catch(() => active && setProduct(null))
+            .finally(() => active && setLoading(false));
+        return () => { active = false; };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [productId]);
+
+    if (loading) {
+        return (
+            <section className="section">
+                <div className="container">
+                    <p style={{ textAlign: 'center' }}>Loading product…</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (!product) {
+        return (
+            <section className="section">
+                <div className="container">
+                    <p style={{ textAlign: 'center' }}>Product not found.</p>
+                </div>
+            </section>
+        );
+    }
 
     const { images, title, info, category, finalPrice, originalPrice, ratings, rateCount } = product;
 
-    const [previewImg, setPreviewImg] = useState(images[0]);
-
-
-    // handling Add-to-cart
     const handleAddItem = () => {
         addItem(product);
+        toast.success(`${product.title} added to cart`);
     };
 
-
-    // setting the very-first image on re-render
-    useEffect(() => {
-        setPreviewImg(images[0]);
-        handleActive(0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [images]);
-
-
-    // handling Preview image
     const handlePreviewImg = (i) => {
         setPreviewImg(images[i]);
         handleActive(i);
     };
 
-
-    // calculating Prices
     const discountedPrice = originalPrice - finalPrice;
     const newPrice = displayMoney(finalPrice);
     const oldPrice = displayMoney(originalPrice);
@@ -67,8 +86,6 @@ const ProductDetails = () => {
             <section id="product_details" className="section">
                 <div className="container">
                     <div className="wrapper prod_details_wrapper">
-
-                        {/*=== Product Details Left-content ===*/}
                         <div className="prod_details_left_col">
                             <div className="prod_details_tabs">
                                 {
@@ -88,16 +105,13 @@ const ProductDetails = () => {
                             </figure>
                         </div>
 
-                        {/*=== Product Details Right-content ===*/}
                         <div className="prod_details_right_col">
                             <h1 className="prod_details_title">{title}</h1>
                             <h4 className="prod_details_info">{info}</h4>
 
                             <div className="prod_details_ratings">
                                 <span className="rating_star">
-                                    {
-                                        [...Array(rateCount)].map((_, i) => <IoMdStar key={i} />)
-                                    }
+                                    {[...Array(rateCount)].map((_, i) => <IoMdStar key={i} />)}
                                 </span>
                                 <span>|</span>
                                 <Link to="*">{ratings} Ratings</Link>
@@ -133,15 +147,10 @@ const ProductDetails = () => {
                             <div className="separator"></div>
 
                             <div className="prod_details_buy_btn">
-                                <button
-                                    type="button"
-                                    className="btn"
-                                    onClick={handleAddItem}
-                                >
+                                <button type="button" className="btn" onClick={handleAddItem}>
                                     Add to cart
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 </div>
