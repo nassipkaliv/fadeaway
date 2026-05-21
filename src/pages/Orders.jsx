@@ -103,9 +103,11 @@ const Orders = () => {
                     ))
                 )}
 
-                <div style={{ textAlign: 'center', marginTop: 24 }}>
-                    <Link to="/all-products" className="btn">Continue Shopping</Link>
-                </div>
+                {orders.length > 0 && (
+                    <div style={{ textAlign: 'center', marginTop: 24 }}>
+                        <Link to="/all-products" className="btn">Continue Shopping</Link>
+                    </div>
+                )}
             </div>
         </section>
     );

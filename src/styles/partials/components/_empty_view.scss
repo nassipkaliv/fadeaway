@@ -1,9 +1,24 @@
 .empty_view_wrapper {
   @include centered;
-  gap: 2rem;
+  gap: 1.25rem;
+  padding: 3rem 1rem;
+  text-align: center;
+
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--text-color);
+  }
 }
 
 .empty_view_icon {
-  font-size: 10rem;
+  font-size: 5rem;
   color: var(--main-color-2);
+  opacity: 0.9;
+  line-height: 1;
+
+  @include devices(sm) {
+    font-size: 4rem;
+  }
 }

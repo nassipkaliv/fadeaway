@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { IoMdStar, IoMdCheckmark } from 'react-icons/io';
+import { BsExclamationCircle } from 'react-icons/bs';
 import { calculateDiscount, displayMoney } from '../helpers/utils';
 import useDocTitle from '../hooks/useDocTitle';
 import useActive from '../hooks/useActive';
 import cartContext from '../contexts/cart/cartContext';
 import { useToast } from '../contexts/toast/toastContext';
 import { api } from '../api/client';
+import EmptyView from '../components/common/EmptyView';
 import SectionsHead from '../components/common/SectionsHead';
 import RelatedSlider from '../components/sliders/RelatedSlider';
 import ProductSummary from '../components/product/ProductSummary';
@@ -56,7 +58,12 @@ const ProductDetails = () => {
         return (
             <section className="section">
                 <div className="container">
-                    <p style={{ textAlign: 'center' }}>Product not found.</p>
+                    <EmptyView
+                        icon={<BsExclamationCircle />}
+                        msg="Product not found"
+                        link="/all-products"
+                        btnText="Browse all products"
+                    />
                 </div>
             </section>
         );
