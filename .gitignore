@@ -30,3 +30,20 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+backend/staticfiles/
+backend/media/
+
+# Tests
+.pytest_cache/
+.coverage
+
+# Local DB files
+*.sqlite3
+*.db

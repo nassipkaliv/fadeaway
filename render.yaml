@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: fadeaway-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    region: frankfurt
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.13
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://fadeaway.vercel.app"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: fadeaway-db
+          property: connectionString
+
+databases:
+  - name: fadeaway-db
+    plan: free
+    region: frankfurt
+    databaseName: fadeaway
+    user: fadeaway

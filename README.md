@@ -108,3 +108,45 @@ Vite-прокси сам перенаправит `/api/*` запросы на `
 ## Django Admin
 
 `http://127.0.0.1:8000/admin/` — полноценный CRUD для всех моделей с поиском, фильтрами и inline-редактированием картинок/позиций заказа.
+
+## Тесты
+
+```bash
+cd backend
+python manage.py test shop --verbosity=2
+```
+
+38 тестов: модели + REST API + auth + orders/stock.
+
+## Деплой
+
+### Backend → Render
+
+1. Зарегистрируйся на https://render.com через GitHub
+2. **New → Blueprint** → выбери репо `fadeaway` → Render найдёт `render.yaml` в корне → **Apply**
+3. Render автоматически:
+   - Создаёт PostgreSQL `fadeaway-db` (free tier)
+   - Поднимает web-service `fadeaway-backend`, выполняет `backend/build.sh` (миграции + collectstatic + seed)
+   - Стартует gunicorn
+4. После первого деплоя в **Shell** Render-сервиса создай суперюзера:
+   ```bash
+   python manage.py createsuperuser
+   ```
+5. Backend URL: `https://fadeaway-backend.onrender.com` (имя может быть другое — Render покажет в дашборде).
+
+### Frontend → Vercel
+
+1. Зарегистрируйся на https://vercel.com через GitHub
+2. **Add New → Project** → выбери репо `fadeaway` → **Framework Preset: Vite**
+3. **Environment Variables** добавь:
+   - `VITE_API_URL` = `https://YOUR-BACKEND.onrender.com` (без слэша на конце)
+4. **Deploy**
+5. После первого деплоя скопируй Vercel-домен (`https://fadeaway-xxx.vercel.app`) и в **Render → fadeaway-backend → Environment** обнови:
+   - `CORS_ALLOWED_ORIGINS` = `https://fadeaway-xxx.vercel.app`
+6. Render автоматически передеплоит. Готово.
+
+### Бесплатные тарифы — нюансы
+
+- **Render Free**: бэк "засыпает" после 15 мин неактивности, первый запрос после сна 30-50 сек.
+- **Render Postgres Free**: база живёт 90 дней, потом надо пересоздать (бесплатно).
+- **Vercel**: ограничений на статику нет.

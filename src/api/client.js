@@ -1,6 +1,11 @@
 const ACCESS_KEY = 'fadeaway_access';
 const REFRESH_KEY = 'fadeaway_refresh';
 
+// In dev → empty string, all /api/* go through Vite proxy to localhost:8000.
+// In prod → set VITE_API_URL in Vercel to your Render backend URL (no trailing slash).
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const url = (path) => `${API_BASE}${path}`;
+
 export const tokenStore = {
   getAccess: () => localStorage.getItem(ACCESS_KEY),
   getRefresh: () => localStorage.getItem(REFRESH_KEY),
@@ -17,7 +22,7 @@ export const tokenStore = {
 async function refreshAccessToken() {
   const refresh = tokenStore.getRefresh();
   if (!refresh) return null;
-  const res = await fetch('/api/auth/refresh/', {
+  const res = await fetch(url('/api/auth/refresh/'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ refresh }),
@@ -42,13 +47,13 @@ export async function apiFetch(path, { method = 'GET', body, auth = false, heade
     if (access) opts.headers.Authorization = `Bearer ${access}`;
   }
 
-  let res = await fetch(path, opts);
+  let res = await fetch(url(path), opts);
 
   if (res.status === 401 && auth) {
     const newAccess = await refreshAccessToken();
     if (newAccess) {
       opts.headers.Authorization = `Bearer ${newAccess}`;
-      res = await fetch(path, opts);
+      res = await fetch(url(path), opts);
     }
   }
 
