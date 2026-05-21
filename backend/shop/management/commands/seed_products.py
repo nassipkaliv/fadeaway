@@ -2,7 +2,8 @@ import json
 from pathlib import Path
 
 from django.core.management.base import BaseCommand
-from django.db import transaction
+from django.core.management.color import no_style
+from django.db import connection, transaction
 from django.utils.text import slugify
 
 from shop.models import Category, SneakerImage, Sneakers
@@ -74,6 +75,16 @@ class Command(BaseCommand):
             if was_created:
                 created += 1
 
+        
+        sequence_sql = connection.ops.sequence_reset_sql(
+            no_style(), [Sneakers, Category, SneakerImage],
+        )
+        if sequence_sql:
+            with connection.cursor() as cursor:
+                for sql in sequence_sql:
+                    cursor.execute(sql)
+
         self.stdout.write(self.style.SUCCESS(
-            f'Seeded {len(products)} products ({created} new). Categories: {len(cat_cache)}.'
+            f'Seeded {len(products)} products ({created} new). '
+            f'Categories: {len(cat_cache)}. Sequences reset.'
         ))
